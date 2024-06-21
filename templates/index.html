@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Clodweb</title>
+
+    <link href="{{ url_for('static', filename='materialize.min.css') }}" rel="stylesheet">
+		<style>
+        body {
+            background-color: #65ae84;
+        }
+		
+		.sidenav {
+            background-color: #acdf7d; /* Change this to your desired sidenav background color */
+        }
+		
+        main {
+            margin-left: 240px; /* Adjust to account for fixed sidenav */
+        }
+		
+		a {
+			color: #000000;
+			font-size: 20px;
+		}
+
+        .custom-line {
+            border: none; /* Remove default border */
+            height: 2px;  /* Set the height of the line */
+            background-color: #000; /* Set the color of the line */
+            margin: 20px 0; /* Set the margin around the line */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function home()
+        {
+            document.getElementById("container").innerHTML = `
+            <a>Peridot reporting to homeworld!</a>
+            <br>
+            <a>I know who you are, {{user}}</a>
+            `
+        }
+
+        function clodcoin()
+        {
+            document.getElementById("container").innerHTML = `
+            <form action="/add_transaction" method="post">
+                    <input type="text" name="wallet_address" placeholder="Wallet address"></input>
+                    <input type="text" name="amount" placeholder="Clodcoins"></input>
+                    <br>
+                    <br>
+                    <input type="submit" value="Send"></input>
+            </form>
+            `
+        }
+    </script>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li><img src="{{ url_for('static', filename='logo.jpg') }}" height=50% width=50%></img></li>
+        <li><a href="javascript:void(0);" onclick="home()">Home</a></li>
+        <li><a href="javascript:void(0);" onclick="clodcoin()">Clodcoin control</a></li>
+    </ul>
+
+    <main>
+        <div class="container">
+            <div class="section">
+                <h1 class="header">Home of Clodweb</h1>
+                <hr class="custom-line">
+				<img src="{{ url_for('static', filename='warship.png') }}" height=200 width=300></img>
+                <hr class="custom-line">
+				<br>
+                <div id="container">
+                    <a>Peridot reporting to homeworld!</a>
+                    <br>
+                    <a>I know who you are, {{user}}</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='materialize.min.js') }}"></script>
+</body>
+</html>
